@@ -17,9 +17,9 @@ Primary (recommended) — the [skills CLI](https://github.com/vercel-labs/skills
 the package manager for the open agent skills ecosystem (75+ agents):
 
 ```sh
-npx skills add <owner>/lookout-skills              # project-level, auto-detects installed agents
-npx skills add <owner>/lookout-skills -g           # user-level, all projects
-npx skills add <owner>/lookout-skills -a claude-code -a pi   # specific agents
+npx skills add rory660/lookout-skills              # project-level, auto-detects installed agents
+npx skills add rory660/lookout-skills -g           # user-level, all projects
+npx skills add rory660/lookout-skills -a claude-code -a pi   # specific agents
 ```
 
 The CLI symlinks each agent's skills directory to a canonical copy (`--copy`
@@ -29,7 +29,7 @@ for independent copies). Project paths it writes (`.claude/skills/`,
 Also installable with the [GitHub CLI](https://cli.github.com/manual/gh_skill_install):
 
 ```sh
-gh skill install <owner>/lookout-skills
+gh skill install rory660/lookout-skills
 ```
 
 No Node/npm: clone this repo and symlink each `skills/<name>/` into your
