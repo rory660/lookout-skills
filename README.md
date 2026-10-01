@@ -1,7 +1,7 @@
 # lookout-skills
 
 [![License](https://img.shields.io/github/license/rory660/lookout-skills)](LICENSE)
-[![validate-skills](https://img.shields.io/github/actions/workflow/status/rory660/lookout-skills/validate-skills.yml?branch=main&label=validate%20skills)](https://github.com/rory660/lookout-skills/actions/workflows/validate-skills.yml)
+[![validate-skills](https://img.shields.io/github/actions/workflow/status/rory660/lookout-skills/validate-skills.yml?branch=main&label=CI)](https://github.com/rory660/lookout-skills/actions/workflows/validate-skills.yml)
 [![Skills](https://img.shields.io/badge/skills-3-8A2BE2)](skills/)
 [![Agent Skills](https://img.shields.io/badge/spec-agentskills.io-blue)](https://agentskills.io)
 
