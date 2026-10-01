@@ -73,6 +73,54 @@ behind it.
 unverified", or run it before committing or handing off agent-written work.
 Returns every written claim the session did not verify before writing.
 
+## Example output
+
+Trimmed and illustrative; real reports depend on the session.
+
+**debrief** — after a session that reworked config loading:
+
+```
+### 1. Related issues not addressed
+- src/config/loader.ts — env vars validated only for the two new keys. `gap` · S
+  Pre-existing keys still load unvalidated; left alone, out of scope.
+- tests/config/ — no test covers the malformed-TOML path. `gap` · M
+
+### 2. Unrelated issues found
+- scripts/release.sh — pins node 18; CI runs 22. `bug` · S
+(2 trivial findings cut)
+```
+
+**pivot** — asked mid-session, forty minutes into a flaky-test hunt:
+
+```
+Verdict: continue, but test H2 before anything else.
+
+Effort ledger — 9 productive / 6 unproductive. Productive: reproduced the
+failure (ruled out a flaky environment), bisected to the retry loop,
+confirmed the timeout hypothesis. Unproductive: three reformat-only edits.
+
+Hypotheses board — H1 timeout under load: confirmed. H2 duplicate suite
+registration: untried, one log-grep to test. H3 upstream runner change:
+untried, needs a repro outside this repo.
+
+Steelman — the retry loop is load-bearing for two other callers; ripping
+it out now trades a bounded failure for an unbounded one.
+```
+
+**contamination** — before committing the same session's work:
+
+```
+src/config/loader.ts:41 — "// retries are safe here — idempotent by design."
+  guessed · next reader: whoever adds the queue consumer · cheap check: none
+  in-repo. Suggest: "// TODO: verify retries are safe here" (not applied).
+
+README.md — "supports Node 18+" · inferred · next reader: users wiring CI ·
+  reasoned from the engines field, never ran the matrix. Cheap check: one CI
+  run on Node 18.
+
+docs/ and tests/ — every written claim verified before writing.
+```
+
 ## Layout
 
 ```
