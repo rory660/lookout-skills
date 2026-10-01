@@ -150,12 +150,3 @@ skills/
 discovers first-class; per-agent skill folders must sit one level under the
 agent's skills root.
 
-## Provenance
-
-Merged from two per-repo skills:
-
-- **vrcompare** — the recall discipline: minimal further exploration, compaction
-  honesty, the four buckets, ranked report format, empty-debrief validity.
-- **wordhoppr** — the classification taxonomy (bug / gap / cleanup) and the
-  evidence-per-finding rules. Its issue-filing pipeline was deliberately left
-  out; filing happens only if the user asks afterward.
