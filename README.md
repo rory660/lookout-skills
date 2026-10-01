@@ -58,6 +58,19 @@ Claude Code).
 
 Uninstall via the CLI: `npx skills remove debrief && npx skills remove pivot && npx skills remove contamination`.
 
+## Compatibility
+
+| Agent | Install | Skills directory | Invoke |
+|---|---|---|---|
+| Claude Code | `npx skills add` (auto-detected) or `-a claude-code` | `.claude/skills/` | natural language |
+| omp | `npx skills add` (auto-detected) | `.agents/skills/` | `/skill:debrief` or natural language |
+| pi | `npx skills add` (auto-detected) | `.agents/skills/` | `/skill:debrief` or natural language |
+| other Agent Skills hosts | `npx skills add` — the CLI auto-detects and writes the paths each agent reads | agent-specific | natural language |
+| no Node/npm | manual symlink of `skills/<name>/` into the agent's skills root | agent-specific | natural language |
+
+Slash commands are verified for debrief; pivot and contamination follow the
+same `/skill:<name>` pattern but have not each been run in every agent above.
+
 ## Usage
 
 **debrief** — ask for a debrief, wrap-up, loose ends, or "what did you notice"
