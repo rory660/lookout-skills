@@ -1,5 +1,9 @@
 # lookout-skills
 
+[![License](https://img.shields.io/github/license/rory660/lookout-skills)](LICENSE)
+[![Skills](https://img.shields.io/badge/skills-3-8A2BE2)](skills/)
+[![Agent Skills](https://img.shields.io/badge/spec-agentskills.io-blue)](https://agentskills.io)
+
 A redistributable [Agent Skills](https://agentskills.io) collection: flight
 instruments for coding-agent sessions. Each skill is a report-only recall
 discipline — it observes the session, never edits code or files issues as a
