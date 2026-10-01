@@ -26,17 +26,15 @@ The CLI symlinks each agent's skills directory to a canonical copy (`--copy`
 for independent copies). Project paths it writes (`.claude/skills/`,
 `.agents/skills/`) are exactly what Claude Code, pi, and omp read natively.
 
-Fallback (no Node/npm) — clone this repo anywhere and run the bundled script:
+Also installable with the [GitHub CLI](https://cli.github.com/manual/gh_skill_install):
 
 ```sh
-./install.sh            # into the current project (git repo required)
-./install.sh --user     # user-level
-./install.sh --remove   # uninstall
+gh skill install <owner>/lookout-skills
 ```
 
-It symlinks every `skills/<name>/` into `.agents/skills/` and
-`.claude/skills/`, covering omp, pi, and Claude Code. (pi and omp both read
-`.agents/skills/` natively; no `.pi/skills/` entry is needed.)
+No Node/npm: clone this repo and symlink each `skills/<name>/` into your
+agent's skills root (`.agents/skills/` for omp and pi, `.claude/skills/` for
+Claude Code).
 
 Uninstall via the CLI: `npx skills remove debrief && npx skills remove pivot && npx skills remove contamination`.
 
@@ -65,7 +63,6 @@ skills/
 │   └── SKILL.md   # mid-session sunk-cost audit: continue / pivot / stop
 └── contamination/
     └── SKILL.md   # unverified claims this session wrote into files
-install.sh         # fallback symlink installer (project / --user / --remove)
 ```
 
 `skills/<name>/SKILL.md` is the standard container layout the skills CLI
