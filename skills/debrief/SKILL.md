@@ -1,5 +1,8 @@
 ---
 name: debrief
+metadata:
+  author: rory660
+  version: 1.0.0
 description: Recall the work completed in this session and surface loose ends — related issues left unaddressed, unrelated issues noticed in passing, and improvement or refactor opportunities spotted while working. Use when the user asks for a debrief, wrap-up, loose ends, "what's left", or "what else did you notice".
 ---
 
