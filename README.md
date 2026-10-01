@@ -11,6 +11,26 @@ side effect.
 | **pivot** | mid-session | Is the current approach still worth continuing, and on what evidence? |
 | **contamination** | before commit / handoff | What did this session write that was never verified and will be read as ground truth? |
 
+## Why
+
+Four constraints are shared by all three skills, and they are the point of the
+collection — each one is a discipline, not a prompt template:
+
+- **Instruments, not autopilots.** Every skill ends in a report and stops.
+  Debrief reports loose ends without filing issues; pivot delivers a verdict
+  without executing it; contamination flags claims without rewording them.
+  Acting on the report is always the user's call.
+- **Recall, not investigation.** Each skill runs under a hard exploration
+  budget — the session's own diff plus at most two further lookups into files
+  the session already touched. No fresh sweeps, no subagents. A debrief that
+  turns into a code review has failed, whichever findings it produces.
+- **Empty is a valid result.** An honest "nothing to report" or a bare
+  `continue` is a first-class outcome; inventing findings or padding the
+  effort ledger to look thorough is the named failure mode in every SKILL.md.
+- **Compaction honesty.** Long sessions lose context. Each skill must say
+  which parts of the session it can no longer speak to rather than
+  reconstruct a plausible history from what remains.
+
 ## Install
 
 Primary (recommended) — the [skills CLI](https://github.com/vercel-labs/skills),
