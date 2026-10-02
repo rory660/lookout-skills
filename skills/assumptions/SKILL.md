@@ -1,7 +1,7 @@
 ---
 name: assumptions
 metadata:
-  author: rory660
+  author: Rory Brown (rory660)
   version: 1.0.0
 description: Surface the decision points where you assumed the user's intent and proceeded without asking, presented as pre-answered questions the user can confirm or overturn in one word. Use when the user asks what you assumed, "what would you have asked", or after a decision-heavy stretch before more work builds on those assumptions.
 ---

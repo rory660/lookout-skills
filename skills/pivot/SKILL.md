@@ -1,7 +1,7 @@
 ---
 name: pivot
 metadata:
-  author: rory660
+  author: Rory Brown (rory660)
   version: 1.0.0
 description: Step back from the current approach mid-session and give a verdict — continue, pivot, or stop and ask — backed by an effort ledger and a hypotheses board. Use when the user asks "are we on track", "is this working", "should we keep going", "cut losses", or asks to reassess partway through long or repeatedly failing work.
 ---

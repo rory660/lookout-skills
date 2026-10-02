@@ -1,7 +1,7 @@
 ---
 name: contamination
 metadata:
-  author: rory660
+  author: Rory Brown (rory660)
   version: 1.0.0
 description: Audit what this session wrote into files — comments, docs, test names, error messages, instruction files — for claims that were never verified and that future sessions will read as ground truth. Use when the user asks what this session left behind, "did you write anything unverified", or before committing or handing off agent-written work.
 ---
