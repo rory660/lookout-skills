@@ -32,5 +32,5 @@ Add assumptions skill: pre-answered ...   # → feat: add assumptions skill
 ## Skill changes
 
 - Each skill lives at `skills/<name>/SKILL.md` with frontmatter `name`, `description` (used for triggering), `author`, `version`.
-- Bump `version` when changing a skill's behavior.
+- `version` is repo-wide and release-scoped: every skill carries the same version, and it matches the latest release tag. Don't bump it by hand — run `scripts/release.sh vX.Y.Z`, which rewrites every SKILL.md, commits `chore(release): vX.Y.Z`, and tags. CI verifies all versions are equal on every PR and that they equal the tag on tag push.
 - README claims (fires-when table, Usage, example output) must stay consistent with the SKILL.md they describe.
