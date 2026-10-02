@@ -18,7 +18,9 @@ Four buckets, each omitted when genuinely empty:
 3. **Improvements & refactors spotted** — duplication, awkward abstractions,
    friction that actually cost time this session.
 4. **Notes on the work itself** (optional) — assumptions, forks that could
-   have gone the other way, verification you couldn't complete.
+   have gone the other way, verification you couldn't complete. Assumptions
+   whose answer would still redirect ongoing work mid-session belong to the
+   [assumptions](../assumptions/README.md) skill, not here.
 
 Every finding carries a class tag so it can be acted on without rework:
 

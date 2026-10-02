@@ -36,7 +36,7 @@ Noticed in passing, nothing to do with the task: bugs, stale code, wrong-looking
 Duplication, awkward abstractions, types that fought you, patterns inconsistent with the rest of the codebase, misleading naming. Note if the friction actually cost you time this session — that is evidence, not speculation.
 
 ### 4. Notes on the work itself (optional)
-Assumptions made, decisions that could have gone the other way, verification you could not complete, things the user should double-check.
+Assumptions made, decisions that could have gone the other way, verification you could not complete, things the user should double-check. Assumptions whose answer would still redirect ongoing work mid-session belong to the `assumptions` skill, not here — this bucket holds what is already settled.
 
 ## Format
 

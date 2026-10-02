@@ -14,16 +14,18 @@ side effect.
 |---|---|---|
 | **debrief** | session end | What loose ends and incidental findings did the work leave behind? |
 | **pivot** | mid-session | Is the current approach still worth continuing, and on what evidence? |
+| **assumptions** | mid-session | Which of my assumptions about your intent are still worth overturning? |
 | **contamination** | before commit / handoff | What did this session write that was never verified and will be read as ground truth? |
 
 ## Why
 
-Four constraints are shared by all three skills, and they are the point of the
+Four constraints are shared by all four skills, and they are the point of the
 collection — each one is a discipline, not a prompt template:
 
 - **Instruments, not autopilots.** Every skill ends in a report and stops.
   Debrief reports loose ends without filing issues; pivot delivers a verdict
-  without executing it; contamination flags claims without rewording them.
+  without executing it; contamination flags claims without rewording them;
+  assumptions presents defaults without acting on them.
   Acting on the report is always the user's call.
 - **Recall, not investigation.** Each skill runs under a hard exploration
   budget — the session's own diff plus at most two further lookups into files
@@ -61,7 +63,7 @@ No Node/npm: clone this repo and symlink each `skills/<name>/` into your
 agent's skills root (`.agents/skills/` for omp and pi, `.claude/skills/` for
 Claude Code).
 
-Uninstall via the CLI: `npx skills remove debrief && npx skills remove pivot && npx skills remove contamination`.
+Uninstall via the CLI: `npx skills remove debrief && npx skills remove pivot && npx skills remove assumptions && npx skills remove contamination`.
 
 ## Compatibility
 
@@ -73,8 +75,9 @@ Uninstall via the CLI: `npx skills remove debrief && npx skills remove pivot && 
 | other Agent Skills hosts | `npx skills add` — the CLI auto-detects and writes the paths each agent reads | agent-specific | natural language |
 | no Node/npm | manual symlink of `skills/<name>/` into the agent's skills root | agent-specific | natural language |
 
-Slash commands are verified for debrief; pivot and contamination follow the
-same `/skill:<name>` pattern but have not each been run in every agent above.
+Slash commands are verified for debrief; pivot, contamination, and assumptions
+follow the same `/skill:<name>` pattern but have not each been run in every
+agent above.
 
 ## Usage
 
@@ -86,6 +89,12 @@ after a working session. In omp you can also run `/skill:debrief`; pi exposes
 "cut losses", or to reassess the current approach. Returns one verdict —
 continue / pivot / stop and ask — with the effort ledger and hypotheses board
 behind it.
+
+**assumptions** — ask "what did you assume", "what would you have asked me",
+or run it after a decision-heavy stretch before building further on those
+decisions. Returns pre-answered questions — the assumed default plus the
+alternative not taken — ranked by how much overturning them would cost now;
+silence confirms the defaults.
 
 **contamination** — ask "what did you leave behind", "did you write anything
 unverified", or run it before committing or handing off agent-written work.
@@ -125,6 +134,19 @@ Steelman — the retry loop is load-bearing for two other callers; ripping
 it out now trades a bounded failure for an unbounded one.
 ```
 
+**assumptions** — after a session that added a retry loop without asking:
+
+```
+Retries in loader.ts — Assumed: idempotent-by-design; the retry loop is
+built on it. Alternative: fail-fast until the queue consumer lands.
+Default: keep. Override: reply "fail-fast" (redo: retry loop, ~30 min).
+Evidence since: undermines — the consumer writes look non-idempotent.
+
+Config keys named snake_case — Assumed: match the existing keys;
+cosmetic only. Default: keep. Override: reply "camelCase" (cost: wording).
+(2 decision points cut — both settled by repo convention.)
+```
+
 **contamination** — before committing the same session's work:
 
 ```
@@ -147,6 +169,8 @@ skills/
 │   └── SKILL.md   # session-end recall: loose ends and incidental findings
 ├── pivot/
 │   └── SKILL.md   # mid-session sunk-cost audit: continue / pivot / stop
+├── assumptions/
+│   └── SKILL.md   # mid-session recall: intent decisions taken without asking
 └── contamination/
     └── SKILL.md   # unverified claims this session wrote into files
 ```
