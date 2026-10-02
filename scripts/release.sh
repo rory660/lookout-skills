@@ -6,7 +6,8 @@
 #
 # The version is repo-wide and lives only in the SKILL.md frontmatter; the
 # tag and the frontmatter are forced to agree here and by CI on tag push.
-# Push with: git push origin main --follow-tags
+# Pushing the tag triggers CI to verify versions and publish the GitHub
+# release. Push with: git push origin main --follow-tags
 set -euo pipefail
 
 die() {
