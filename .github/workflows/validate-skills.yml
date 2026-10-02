@@ -3,9 +3,9 @@ name: validate-skills
 on:
   push:
     branches: [main]
-    paths: [skills/**, .github/workflows/validate-skills.yml]
+    paths: [skills/**, scripts/**, .github/workflows/validate-skills.yml]
   pull_request:
-    paths: [skills/**, .github/workflows/validate-skills.yml]
+    paths: [skills/**, scripts/**, .github/workflows/validate-skills.yml]
 
 jobs:
   validate:
@@ -14,62 +14,4 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Validate SKILL.md files
-        run: |
-          pip install pyyaml --quiet
-          python3 - <<'EOF'
-          import sys
-          from pathlib import Path
-
-          import yaml
-
-          DESCRIPTION_MAX = 1024  # agentskills spec limit
-          BODY_MAX_LINES = 500
-
-          skills = sorted(Path("skills").iterdir())
-          dirs = [d for d in skills if d.is_dir()]
-          if not dirs:
-              sys.exit("error: no skill directories under skills/")
-
-          for d in dirs:
-              f = d / "SKILL.md"
-              if not f.is_file():
-                  sys.exit(f"error: {f}: missing SKILL.md")
-
-              text = f.read_text(encoding="utf-8")
-              lines = text.splitlines()
-              if len(lines) < 3 or lines[0].strip() != "---":
-                  sys.exit(f"error: {f}: frontmatter must start with '---'")
-              try:
-                  end = lines[1:].index("---")
-              except ValueError:
-                  sys.exit(f"error: {f}: frontmatter not closed with '---'")
-
-              fm_text = "\n".join(lines[1 : end + 1])
-              try:
-                  fm = yaml.safe_load(fm_text)
-              except yaml.YAMLError as e:
-                  sys.exit(f"error: {f}: frontmatter does not parse: {e}")
-
-              if not isinstance(fm, dict):
-                  sys.exit(f"error: {f}: frontmatter is not a mapping")
-
-              name = fm.get("name")
-              if not isinstance(name, str) or not name.strip():
-                  sys.exit(f"error: {f}: 'name' missing or empty")
-              if name != d.name:
-                  sys.exit(f"error: {f}: name '{name}' does not match directory '{d.name}'")
-
-              desc = fm.get("description")
-              if not isinstance(desc, str) or not desc.strip():
-                  sys.exit(f"error: {f}: 'description' missing or empty")
-              if len(desc) > DESCRIPTION_MAX:
-                  sys.exit(f"error: {f}: description is {len(desc)} chars (limit {DESCRIPTION_MAX})")
-
-              body_lines = len(lines) - (end + 2)
-              if body_lines >= BODY_MAX_LINES:
-                  sys.exit(f"error: {f}: body is {body_lines} lines (limit {BODY_MAX_LINES})")
-
-              print(f"ok: {f} ({body_lines} body lines, description {len(desc)} chars)")
-
-          print(f"validated {len(dirs)} skills")
-          EOF
+        run: scripts/check-skills.sh
