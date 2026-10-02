@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/rory660/lookout-skills)](LICENSE)
 [![validate-skills](https://img.shields.io/github/actions/workflow/status/rory660/lookout-skills/validate-skills.yml?branch=main&label=CI)](https://github.com/rory660/lookout-skills/actions/workflows/validate-skills.yml)
-[![Skills](https://img.shields.io/badge/skills-3-8A2BE2)](skills/)
+[![Skills](https://img.shields.io/badge/skills-4-8A2BE2)](skills/)
 [![Agent Skills](https://img.shields.io/badge/spec-agentskills.io-blue)](https://agentskills.io)
 
 A redistributable [Agent Skills](https://agentskills.io) collection: flight
