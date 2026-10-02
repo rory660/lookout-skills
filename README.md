@@ -32,8 +32,9 @@ collection — each one is a discipline, not a prompt template:
   the session already touched. No fresh sweeps, no subagents. A debrief that
   turns into a code review has failed, whichever findings it produces.
 - **Empty is a valid result.** An honest "nothing to report" or a bare
-  `continue` is a first-class outcome; inventing findings or padding the
-  effort ledger to look thorough is the named failure mode in every SKILL.md.
+  `continue` is a first-class outcome; inventing findings, manufacturing
+  questions, or padding the effort ledger to look thorough is the named
+  failure mode in each SKILL.md.
 - **Compaction honesty.** Long sessions lose context. Each skill must say
   which parts of the session it can no longer speak to rather than
   reconstruct a plausible history from what remains.
@@ -63,7 +64,14 @@ No Node/npm: clone this repo and symlink each `skills/<name>/` into your
 agent's skills root (`.agents/skills/` for omp and pi, `.claude/skills/` for
 Claude Code).
 
-Uninstall via the CLI: `npx skills remove debrief && npx skills remove pivot && npx skills remove assumptions && npx skills remove contamination`.
+Uninstall via the CLI:
+
+```sh
+npx skills remove debrief
+npx skills remove pivot
+npx skills remove assumptions
+npx skills remove contamination
+```
 
 ## Compatibility
 
@@ -72,7 +80,7 @@ Uninstall via the CLI: `npx skills remove debrief && npx skills remove pivot && 
 | Claude Code | `npx skills add` (auto-detected) or `-a claude-code` | `.claude/skills/` | natural language |
 | omp | `npx skills add` (auto-detected) | `.agents/skills/` | `/skill:debrief` or natural language |
 | pi | `npx skills add` (auto-detected) | `.agents/skills/` | `/skill:debrief` or natural language |
-| other Agent Skills hosts | `npx skills add` — the CLI auto-detects and writes the paths each agent reads | agent-specific | natural language |
+| other Agent Skills hosts | `npx skills add` (auto-detects) | agent-specific | natural language |
 | no Node/npm | manual symlink of `skills/<name>/` into the agent's skills root | agent-specific | natural language |
 
 Slash commands are verified for debrief; pivot, contamination, and assumptions
@@ -93,8 +101,9 @@ behind it.
 **assumptions** — ask "what did you assume", "what would you have asked me",
 or run it after a decision-heavy stretch before building further on those
 decisions. Returns pre-answered questions — the assumed default plus the
-alternative not taken — ranked by how much overturning them would cost now;
-silence confirms the defaults.
+alternative not taken — ranked by the chance you answer differently and
+the cost of being wrong, with anything already contradicted by later
+evidence first; silence confirms the defaults.
 
 **contamination** — ask "what did you leave behind", "did you write anything
 unverified", or run it before committing or handing off agent-written work.
@@ -166,16 +175,21 @@ docs/ and tests/ — every written claim verified before writing.
 ```
 skills/
 ├── debrief/
-│   └── SKILL.md   # session-end recall: loose ends and incidental findings
+│   ├── SKILL.md   # session-end recall: loose ends and incidental findings
+│   └── README.md
 ├── pivot/
-│   └── SKILL.md   # mid-session sunk-cost audit: continue / pivot / stop
+│   ├── SKILL.md   # mid-session sunk-cost audit: continue / pivot / stop and ask
+│   └── README.md
 ├── assumptions/
-│   └── SKILL.md   # mid-session recall: intent decisions taken without asking
+│   ├── SKILL.md   # mid-session recall: intent decisions taken without asking
+│   └── README.md
 └── contamination/
-    └── SKILL.md   # unverified claims this session wrote into files
+    ├── SKILL.md   # unverified claims this session wrote into files
+    └── README.md
 ```
 
 `skills/<name>/SKILL.md` is the standard container layout the skills CLI
-discovers first-class; per-agent skill folders must sit one level under the
-agent's skills root.
+discovers first-class. The CLI installs the whole `skills/<name>/` folder as
+`<skills-root>/<name>/` under each agent — so each skill's `README.md` ships
+alongside its `SKILL.md`.
 
