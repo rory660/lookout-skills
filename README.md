@@ -77,8 +77,8 @@ npx skills remove contamination
 
 | Agent | Install | Skills directory | Invoke |
 |---|---|---|---|
-| Claude Code | `npx skills add` (auto-detected) or `-a claude-code` | `.claude/skills/` | natural language |
-| omp | `npx skills add` (auto-detected) | `.agents/skills/` | `/skill:debrief` or natural language |
+| Claude Code | `npx skills add` (auto-detected) or `-a claude-code` | `.claude/skills/` | `/debrief` or natural language |
+| omp | `npx skills add -a universal` (omp is not auto-detected) or manual symlink | `.agents/skills/` | `/skill:debrief` or natural language |
 | pi | `npx skills add` (auto-detected) | `.agents/skills/` | `/skill:debrief` or natural language |
 | other Agent Skills hosts | `npx skills add` (auto-detects) | agent-specific | natural language |
 | no Node/npm | manual symlink of `skills/<name>/` into the agent's skills root | agent-specific | natural language |
